@@ -1,11 +1,10 @@
 package Graphs;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Graph {
     int nodeCount;
-    ArrayList<LinkedList> adjacencyList;
+    ArrayList<LinkedList<Integer>> adjacencyList;
     int [][] adjacencyMatrix;
 
     public Graph(int nodeCount) {
@@ -35,6 +34,61 @@ public class Graph {
         System.out.println("edge added (" + source + ", " + destination + ")");
         System.out.println("edge added (" + destination + ", " + source + ")");
         System.out.println("-------------------------------------------");
+    }
+
+
+    ArrayList<Integer> breadthFirstSearch(int source) {
+        //use Queue data structure
+        ArrayList<Boolean> visited = new ArrayList<>();
+        ArrayList<Integer> sequence = new ArrayList<>();
+        for (int i = 0; i < nodeCount; i++) {
+            visited.add(false);
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        int current = source;
+        queue.offer(current);
+        visited.set(current, true);
+        while(!queue.isEmpty()) {
+            current = queue.poll();
+            sequence.add(current);
+            for(Integer neighbour: adjacencyList.get(current)) {
+                if(!visited.get(neighbour)) {
+                    visited.set(neighbour, true);
+                    queue.offer(neighbour);
+                }
+            }
+        }
+
+        return sequence;
+    }
+
+    ArrayList<Integer> depthFirstSearch(int source) {
+        //use Stack data structure
+        ArrayList<Boolean> visited = new ArrayList<>();
+        ArrayList<Integer> sequence = new ArrayList<>();
+        for (int i = 0; i < nodeCount; i++) {
+            visited.add(false);
+        }
+
+        Stack<Integer> stack = new Stack<>();
+
+        int current = source;
+        stack.push(current);
+        visited.set(current, true);
+        while(!stack.isEmpty()) {
+            current = stack.pop();
+            sequence.add(current);
+            for(Integer neighbour: adjacencyList.get(current)) {
+                if(!visited.get(neighbour)) {
+                    visited.set(neighbour, true);
+                    stack.push(neighbour);
+                }
+            }
+        }
+
+        return sequence;
     }
 
     void printAdjacencyList() {

@@ -24,5 +24,8 @@ public class GraphRunner {
 
         graph.printAdjacencyMatrix();
         graph.printAdjacencyList();
+
+        System.out.println("DFS of the graph is : " + graph.depthFirstSearch(1));
+        System.out.println("BFS of the graph is : " + graph.breadthFirstSearch(1));
     }
 }
