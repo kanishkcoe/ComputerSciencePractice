@@ -52,10 +52,12 @@ public class Graph {
         visited.set(current, true);
         while(!queue.isEmpty()) {
             current = queue.poll();
-            sequence.add(current);
+            if(!visited.get(current)) {
+                sequence.add(current);
+                visited.set(current, true);
+            }
             for(Integer neighbour: adjacencyList.get(current)) {
                 if(!visited.get(neighbour)) {
-                    visited.set(neighbour, true);
                     queue.offer(neighbour);
                 }
             }
@@ -79,10 +81,12 @@ public class Graph {
         visited.set(current, true);
         while(!stack.isEmpty()) {
             current = stack.pop();
-            sequence.add(current);
+            if(!visited.get(current)) {
+                sequence.add(current);
+                visited.set(current, true);
+            }
             for(Integer neighbour: adjacencyList.get(current)) {
                 if(!visited.get(neighbour)) {
-                    visited.set(neighbour, true);
                     stack.push(neighbour);
                 }
             }
