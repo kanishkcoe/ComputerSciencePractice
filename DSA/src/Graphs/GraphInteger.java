@@ -2,12 +2,12 @@ package Graphs;
 
 import java.util.*;
 
-public class Graph {
+public class GraphInteger {
     int nodeCount;
     ArrayList<LinkedList<Integer>> adjacencyList;
     int [][] adjacencyMatrix;
 
-    public Graph(int nodeCount) {
+    public GraphInteger(int nodeCount) {
         this.nodeCount = nodeCount;
         //List
         adjacencyList = new ArrayList<>();

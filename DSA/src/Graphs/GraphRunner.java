@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GraphRunner {
 
     public static void main(String[] args) {
-        Graph graph = new Graph(8);
+        GraphInteger graph = new GraphInteger(8);
         Scanner scanner = new Scanner(System.in);
 
         String reset = "n";
